@@ -23,7 +23,7 @@ function add_tea(tea_id, tea_password,callback) {
     }
 
 
-    function add_stu(stu_id, stu_pwd,callback) {
+    function add_stu(stu_id, stu_pwd) {
         // con.connect();
         con.query('insert into students(stu_id,stu_password) values(?,?)',
             [stu_id, stu_pwd], (err, result) => {
@@ -32,7 +32,7 @@ function add_tea(tea_id, tea_password,callback) {
                 }else
                 { 
                     console.log('OK');
-                    callback(result);
+                  
                     return true;
                
                 }
