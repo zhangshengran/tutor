@@ -94,7 +94,7 @@ exports.verify = function(req,res){
 
 // 学生注册接口
 exports.register_stu = function (req, res) {
-    console.log(req);
+    // console.log(req);
     console.log(req.body);
     
     // console.log(req.headers);

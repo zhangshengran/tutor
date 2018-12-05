@@ -10,7 +10,7 @@ var register = require('./models/register');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var app = express();
-app.use(require('body-parser'))
+app.use(require('body-parser')())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -25,8 +25,9 @@ app.all('*', function (req, res, next) {
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 app.use(session({
   secret: 'secret', // 对session id 相关的cookie 进行签名
   resave: true,
