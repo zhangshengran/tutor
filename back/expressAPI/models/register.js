@@ -103,7 +103,7 @@ exports.register_stu = function (req, res) {
             res.send({
                 status  : 1,
                 info    : 'error',
-                message:'注册失败,此账号已被注册'
+                message:'注册失败'
             });
            
         } else {
