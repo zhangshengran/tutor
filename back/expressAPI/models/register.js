@@ -100,15 +100,17 @@ exports.register_stu = function (req, res) {
     con.query('insert into students(stu_phone,stu_password) values(?,?)',
     [stu_phone, stu_password], (err, result) => {
         if (err) {
-            
-            res.send({
-                status  : 0,
-                info    : 'OK'
-            });
-        } else {
             res.send({
                 status  : 1,
-                info    : 'error'
+                info    : 'error',
+                message:'注册失败,此账号已被注册'
+            });
+           
+        } else {
+            res.send({
+                status  : 0,
+                info    : 'OK',
+                message:'注册成功'
             });
         }
     });

@@ -42,7 +42,7 @@ app.use('/users', usersRouter);
 app.post('/register_tea',register.register_tea);
 app.post('/register_stu',register.register_stu);
 
-app.use('/verify',register.verify);
+app.use('verify',register.verify);
 
 
 
