@@ -65,7 +65,7 @@ exports.verify = function(req,res){
     var queryUrl = 'http://v.juhe.cn/sms/send?'+queryData;
     
     request(queryUrl, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode == 200) { 
             // console.log(body) // 打印接口返回内容      
             var jsonObj = JSON.parse(body); // 解析接口返回的JSON内容 
             console.log(jsonObj);
@@ -94,7 +94,11 @@ exports.verify = function(req,res){
 
 // 学生注册接口
 exports.register_stu = function (req, res) {
+    console.log(req);
     console.log(req.body);
+    
+    // console.log(req.headers);
+    console.log(stu_phone,stu_password)
     var stu_phone = req.body.stu_phone;
     var stu_password = req.body.stu_password;
     con.query('insert into students(stu_phone,stu_password) values(?,?)',
