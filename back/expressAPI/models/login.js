@@ -8,13 +8,12 @@ con = mysql.createConnection({
 
 
   function  select_tea(id,callback) {
-            con.query('select password from login where userId = ?', [id], (err, result) => {
+            con.query('select tea_password from teachers where tea_id = ?', [id], (err, result) => {
             
                 if (err) {
                     return false;
                 }else
-                { 
-                    //   console.log("查询结果是"+result);
+                {                     
                       callback(result);
                       return result;
                 }
@@ -23,13 +22,13 @@ con = mysql.createConnection({
         } 
         
         function  select_stu(id,callback) {
-            con.query('select password from login where userId = ?', [id], (err, result) => {
+            con.query('select stu_password from students where stu_id = ?', [id], (err, result) => {
             
                 if (err) {
                     return false;
                 }else
                 { 
-                    //   console.log("查询结果是"+result);
+                    
                       callback(result);
                       return result;
                 }
@@ -42,4 +41,7 @@ con = mysql.createConnection({
 
 
 
-module.exports ={}
+module.exports ={
+    select_tea:select_tea,
+    select_stu:select_stu
+}
