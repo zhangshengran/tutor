@@ -1,4 +1,13 @@
 API
+
+说明
+
+
+
+    status：  0表示成功，1表示失败
+   message:具体的消息信息
+
+
 获取验证码：
         接口：/verify
         请求：GET
@@ -7,7 +16,7 @@ API
         成功返回值：
                 {
                     status:0,
-                    stu_phone,
+                    stu_phone,//用户收到的验证码
                     message:'请求成功'
                 }
               
@@ -30,13 +39,14 @@ API
         成功返回值：
                 {
                     status:0,
-                    tpl_value,
-                    message:'请求成功'
+                    info    : 'OK',
+                    message:'注册成功'
                 }
               
             }
         错误返回值:{
-                   status:1,
-                   message:'请求失败'
+                   status  : 1,
+                info    : 'error',
+                message:'注册失败'
             }    
             );          

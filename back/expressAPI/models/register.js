@@ -98,16 +98,17 @@ exports.register_stu = function (req, res) {
     console.log(req.body);
     
     // console.log(req.headers);
-    console.log(stu_phone,stu_password)
+   
     var stu_phone = req.body.stu_phone;
     var stu_password = req.body.stu_password;
+    console.log("获得的账号"+stu_phone,"获得的密码"+stu_password);
     con.query('insert into students(stu_phone,stu_password) values(?,?)',
     [stu_phone, stu_password], (err, result) => {
         if (err) {
             res.send({
                 status  : 1,
                 info    : 'error',
-                message:'注册失败'
+                message:'注册失败' 
             });
            
         } else {
