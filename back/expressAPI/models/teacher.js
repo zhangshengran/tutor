@@ -27,7 +27,7 @@ exports.register_tea =function (req, res) {
             res.send({
                 status  : 1,
                 info    : 'error',
-                message:'发送格式错误'
+                message:'数据库连接错误'
             });
         } else {
             res.send({
