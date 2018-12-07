@@ -62,14 +62,14 @@ API
                 {
                     status:0,
                     info    : 'OK',
-                    token:(用户tokenID)
-                    message:'登陆成功'
+                    tokenID:(用户tokenID,唯一标识)
+                    message:'密码匹配正确'
                 }
               
             }
         错误返回值:{
-                   status  : 1,
-                info    : 'error',
-                message:'登陆失败'
+                   status:1,
+                    info    : 'error',
+                    message:'密码匹配错误'
             }    
             );      

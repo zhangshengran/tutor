@@ -12,7 +12,11 @@ con = mysql.createConnection({
             con.query('select stu_password,stu_id from students where stu_phone = ?', [stu_phone], (err, result) => {
             
                 if (err) {
-                    return false;
+                    res.send( {
+                        status:1,
+                        info    : 'error',
+                        message:'发送格式错误,无法识别参数'
+                    })
                 }else
                 {    
                 console.log('回调接收' + result[0].stu_id);              
