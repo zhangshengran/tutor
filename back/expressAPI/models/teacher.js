@@ -25,13 +25,13 @@ exports.register_tea =function (req, res) {
     [tea_name,tea_age,tea_sex,tea_email,stu_grade,stu_courses,tea_school,tea_major,tea_grade,userID,remark], (err, result) => {
         if (err) {
             res.send({
-                status  : 0,
+                status  : 1,
                 info    : 'error',
                 message:'发送格式错误'
             });
         } else {
             res.send({
-                status  : 1,
+                status  : 0,
                 info    : 'ok'
             });
         }

@@ -15,12 +15,12 @@ con = mysql.createConnection({
                     res.send( {
                         status:1,
                         info    : 'error',
-                        message:'发送格式错误,无法识别参数'
+                        message:'数据库连接失败'
                     })
                 }else
                 {    
-                console.log('回调接收' + result[0].stu_id);              
-                console.log('回调接收' + result[0].stu_password);
+                console.log('数据库查到的ID' + result[0].stu_id);              
+                console.log('数据库查到的密码' + result[0].stu_password);
                 if(result[0].stu_password ==stu_password)
                 {
                     

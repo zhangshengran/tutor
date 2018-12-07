@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var register = require('./models/register');
+var teacher = require('./models/teacher');
 var login = require('./models/login');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
@@ -41,7 +42,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 //API -----------------------------------------------------------------
-app.post('/register_tea',register.register_tea);
+app.post('/register_tea',teacher.register_tea);
 app.post('/register_stu',register.register_stu);
 app.get('/verify',register.verify);  
 app.post('/login',login.select_stu);
