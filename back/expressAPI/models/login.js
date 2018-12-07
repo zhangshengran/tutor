@@ -5,43 +5,40 @@ con = mysql.createConnection({
     password: 'xingyun2016',
     database: 'tutor'
 });
-
-
-  function  select_tea(id,callback) {
-            con.query('select tea_password from teachers where tea_id = ?', [id], (err, result) => {
+      
+        exports.select_stu= function(req,res) {
+           var stu_phone = req.body.stu_phone;
+           var stu_password =  req.body.stu_password;
+            con.query('select stu_password,stu_id from students where stu_phone = ?', [stu_phone], (err, result) => {
             
                 if (err) {
                     return false;
                 }else
-                {                     
-                      callback(result);
-                      return result;
-                }
-                
-            });
-        } 
-        
-        function  select_stu(id,callback) {
-            con.query('select stu_password from students where stu_id = ?', [id], (err, result) => {
-            
-                if (err) {
-                    return false;
-                }else
-                { 
+                {    
+                console.log('回调接收' + result[0].stu_id);              
+                console.log('回调接收' + result[0].stu_password);
+                if(result[0].stu_password ==stu_password)
+                {
                     
-                      callback(result);
-                      return result;
+                    res.send( {
+                        status:0,
+                        info    : 'OK',
+                        tokenID:result[0].stu_id,
+                        message:'密码匹配正确'
+                    })
+                }
+                else
+                {
+                    res.send( {
+                        status:1,
+                        info    : 'error',
+                        message:'密码匹配错误'
+                    })
+                }
+               
+                
                 }
                 
             });
         } 
         
-        
-   
-
-
-
-module.exports ={
-    select_tea:select_tea,
-    select_stu:select_stu
-}

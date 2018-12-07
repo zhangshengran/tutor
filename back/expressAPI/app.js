@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var register = require('./models/register');
+var login = require('./models/login');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var app = express();
@@ -29,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.use(session({
-  secret: 'secret', // 对session id 相关的cookie 进行签名
+  secret: 'secret', // 对session id 相关的cookie 进行签名 
   resave: true,
   saveUninitialized: false, // 是否保存未初始化的会话
   cookie: {
@@ -42,8 +43,8 @@ app.use('/users', usersRouter);
 //API -----------------------------------------------------------------
 app.post('/register_tea',register.register_tea);
 app.post('/register_stu',register.register_stu);
-
 app.get('/verify',register.verify);  
+app.post('/login',login.select_stu);
 
 
 
@@ -52,9 +53,9 @@ app.get('/verify',register.verify);
 
 
 //API -----------------------------------------------------------------
+// 
 
-
-
+// ---------------------------------------------------------------------------
 
 
 

@@ -50,3 +50,26 @@ API
                 message:'注册失败'
             }    
             );          
+
+
+学生登陆：
+        接口：/login
+        请求：POST
+        参数：stu_phone  手机号
+             stu_password  密码
+        调用形式：/login
+        成功返回值：
+                {
+                    status:0,
+                    info    : 'OK',
+                    token:(用户tokenID)
+                    message:'登陆成功'
+                }
+              
+            }
+        错误返回值:{
+                   status  : 1,
+                info    : 'error',
+                message:'登陆失败'
+            }    
+            );      
