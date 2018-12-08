@@ -1,14 +1,7 @@
 var request = require('request');
 var querystring = require('querystring');
-const mysql = require('mysql'),
-    con = mysql.createConnection({
-        host: '39.105.111.123',
-        user: 'root',
-        password: 'xingyun2016',
-        database: 'tutor'
-    });
 
-
+var con = require('./db').con;
 
 // 验证码接口
 exports.verify = function(req,res){
