@@ -42,8 +42,15 @@ exports.select_tea = function (req, res) {
             })
         }else{
             if(result.length!=0){
-                res.json(result[0]);
+                res.json(result);
         
+            }
+            else{
+                res.send({
+                    status:1,
+                    info:'error',
+                    message:'数据库还未注册过老师'
+                })
             }
         }
        

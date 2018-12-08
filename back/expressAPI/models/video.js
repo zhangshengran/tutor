@@ -10,7 +10,6 @@ exports.select_video = function (req, res) {
             })
         }else{
             if(result.length!=0){
-                console.log(result)
                 res.json(result);
         
             }
