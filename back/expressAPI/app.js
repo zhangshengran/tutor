@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var student = require('./models/student');
 var teacher = require('./models/teacher');
 var video = require('./models/video');
+var order = require('./models/order');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var app = express();
@@ -56,9 +57,9 @@ app.get('/select_video',video.select_video);
 
 
 
-
 //API -----------------------------------------------------------------
-// 
+// 订单
+app.post('/order_set',order.order_set);  
 
 // ---------------------------------------------------------------------------
 
