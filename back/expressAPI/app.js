@@ -60,6 +60,8 @@ app.get('/select_video',video.select_video);
 //API -----------------------------------------------------------------
 // 订单
 app.post('/order_set',order.order_set);  
+app.get('/select_order_stu',order.select_order_stu)
+app.get('/select_order_tea',order.select_order_tea)
 
 // ---------------------------------------------------------------------------
 
