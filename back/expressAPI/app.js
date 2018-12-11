@@ -11,8 +11,16 @@ var teacher = require('./models/teacher');
 var video = require('./models/video');
 var order = require('./models/order');
 var forget = require('./models/forget');
+var storage = require('./models/storage');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
+
+var fs = require('fs');
+var multer = require('multer');
+var upload = multer({ dest: 'upload_tmp/' });
+
+
+
 var app = express();
 app.use(require('body-parser')())
 // view engine setup
@@ -47,12 +55,14 @@ app.use('/users', usersRouter);
 // 老师接口
 app.post('/register_tea',teacher.register_tea);
 app.get('/select_tea',teacher.select_tea);
-
+app.post('/updata_tea',teacher.completed);
+app.get('/showdata_tea',teacher.showdata);
 // 学生接口
 app.post('/register_stu',student.register_stu);
 app.get('/verify',student.verify);  
 app.post('/login',student.select_stu);
-
+app.post('/updata_stu',student.completed);
+app.get('/showdata_stu',student.showdata);
 // 视频接口
 app.get('/select_video',video.select_video);  
 //忘记密码-----------------------------------------------------------------
@@ -65,10 +75,12 @@ app.get('/select_order_stu',order.select_order_stu)
 app.get('/select_order_tea',order.select_order_tea)
 
 // ---------------------------------------------------------------------------
+// 文件上传
+
+app.post('/upload', upload.any(),storage.upload);//用户头像更新
 
 
-
-
+// -------------------------------------------
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
