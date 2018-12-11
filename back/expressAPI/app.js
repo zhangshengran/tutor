@@ -10,6 +10,7 @@ var student = require('./models/student');
 var teacher = require('./models/teacher');
 var video = require('./models/video');
 var order = require('./models/order');
+var forget = require('./models/forget');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var app = express();
@@ -54,9 +55,9 @@ app.post('/login',student.select_stu);
 
 // 视频接口
 app.get('/select_video',video.select_video);  
-
-
-
+//忘记密码-----------------------------------------------------------------
+app.get('/findVerify',forget.findVerify);
+app.post('/forget',forget.forget);
 //API -----------------------------------------------------------------
 // 订单
 app.post('/order_set',order.order_set);  
