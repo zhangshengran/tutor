@@ -104,16 +104,21 @@ exports.select_stu = function (req, res) {
             else {
                 console.log('数据库查到的ID' + result[0].stu_id);
                 console.log('数据库查到的密码' + result[0].stu_password);
+                var tokenID=result[0].stu_id;
+                var  tea_token = result[0].is_tea_ID;
                 if (result[0].stu_password == stu_password) {
-                    console.log(result);
+                    con.query('select * from students where stu_phone=?',[stu_phone],(err,result)=>{
+                        console.log(result);
                     res.send({
                         status: 0,
                         info: 'OK',
-                        tokenID: result[0].stu_id,
-                        tea_token: result[0].is_tea_ID,
+                        tokenID: tokenID,
+                        tea_token: tea_token,
                         information:result[0],
                         message: '密码匹配正确'
                     })
+                    })
+                    
                 }
                 else {
                     res.send({

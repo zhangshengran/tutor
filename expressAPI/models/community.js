@@ -29,11 +29,36 @@ exports.writeNote = async function (req, res, next) {
       })
   }
   
-// exports.selectAllNotes = function(req,res){
-//     var stu_id = req.query.stu_id;
-//     var slequery = 'select'+
-//     'content,img_src1,'+
-//     ''
-//     con.query('select ')
-//     console.log()
-// }
+exports.getOwnNotes = function(req,res){
+    var stu_id = req.query.stu_id;
+    // var slequery = 'select'+
+    // 'content,img_src1,'+
+    // ''
+
+    con.query('select content,img_src1,stu_name,head_src from students,community where students.stu_id=community.poster_id and students.stu_id=?',[stu_id],(err,result)=>{
+      if(err){
+        res.send({
+          status:1,
+          info:'error',
+          message:'数据库错误'
+        })
+      }else{
+        res.json(result);
+      }
+    })
+}
+
+
+exports.getAllNotes = function(req,res){
+  con.query('select content,img_src1,stu_name,head_src from students,community where students.stu_id=community.poster_id',(err,result)=>{
+    if(err){
+      res.send({
+        status:1,
+        info:'error',
+        message:'数据库错误'
+      })
+    }else{
+      res.json(result);
+    }
+  })
+}
