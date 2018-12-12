@@ -345,7 +345,7 @@ API
                    message:errorMessage
             }    
             );
-社区学习圈板块
+社区学习圈板块222
 写贴
 /writeNote
 接口：/writeNote
