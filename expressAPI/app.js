@@ -12,15 +12,15 @@ var video = require('./models/video');
 var order = require('./models/order');
 var forget = require('./models/forget'); 
 var storage = require('./models/storage');
+var community = require('./models/community');
+
+
+
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
-
 var fs = require('fs');
 var multer = require('multer');
 var upload = multer({ dest: 'upload_tmp/' });
-
-
-
 var app = express();
 app.use(require('body-parser')())
 // view engine setup
@@ -78,7 +78,7 @@ app.get('/select_order_tea',order.select_order_tea)
 // 文件上传
 
 app.post('/upload_head', upload.any(),storage.upload_head);//用户头像更新
-
+app.post('/writeNote',upload.any(),community.writeNote);
 
 // -------------------------------------------
 // catch 404 and forward to error handler
