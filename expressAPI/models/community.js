@@ -1,32 +1,61 @@
 var con = require('./db').con;
 var aliyun = require('./aliyun');
 var fs = require('fs');
-exports.writeNote = async function (req, res, next) {
+exports.writeNote = async function (req, res, next) { 
     var poster_id = req.body.poster_id;
     var content = req.body.content;
-    var filestyle = req.files[0].originalname.split('.')[1];//获得上传文件类型
-    var timestamp=new Date().getTime();//时间戳
-    var file =timestamp+ '.' + filestyle; //自定义文件名
-   
-    var des_file = "./upload_tmp/" + file;
-    
-    await fs.rename(req.files[0].path, des_file)
-
-    var img_src1 = await aliyun.aliyunPUT('community/', file, des_file);
-    await con.query( 'insert into community(poster_id,content,img_src1) values(?,?,?)',[poster_id,content,img_src1],(err,result)=>{
-      if(err){
-        res.send({
-          status:1,
-          info:'error',
-          message:'数据库错误'
-        })
-      }
-    });
+    var img = req.body.img;
+    console.log(req.files);
+    if(!content &&req.files.length ==0){
       res.send({
-        status:0,
-        info:'ok',
-        message:'成功'
+        status:1,
+        info:'error',
+        message:'发帖失败，请至少输入一句话或插入一个图片'
       })
+    }else{
+      if(req.files.length!=0){
+        var filestyle = req.files[0].originalname.split('.')[1];//获得上传文件类型
+      var timestamp=new Date().getTime();//时间戳
+      var file =timestamp+ '.' + filestyle; //自定义文件名
+     
+      var des_file = "./upload_tmp/" + file;
+      
+      await fs.rename(req.files[0].path, des_file)
+  
+      var img_src1 = await aliyun.aliyunPUT('community/', file, des_file);
+      await con.query( 'insert into community(poster_id,content,img_src1) values(?,?,?)',[poster_id,content,img_src1],(err,result)=>{
+        if(err){
+          res.send({
+            status:1,
+            info:'error',
+            message:'数据库错误'
+          })
+        }
+      });
+        res.send({
+          status:0,
+          info:'ok',
+          message:'成功'
+        })
+      }else{
+        await con.query( 'insert into community(poster_id,content) values(?,?)',[poster_id,content],(err,result)=>{
+          if(err){
+            res.send({
+              status:1,
+              info:'error',
+              message:'数据库错误'
+            })
+          }
+        });
+          res.send({
+            status:0,
+            info:'ok',
+            message:'成功'
+          })
+      }
+      
+    }
+  
   }
   
 exports.getOwnNotes = function(req,res){
