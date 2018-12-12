@@ -12,7 +12,7 @@ exports.findVerify = function (req, res) {
     if (err) {
       res.send({
         status: 0,
-        info: error,
+        info: 'error',
         message: '数据库错误'
       })
     }

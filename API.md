@@ -138,7 +138,7 @@ API
             }    
             );
 -------------------------老师 ----------------------------------------------------------------------
-成为老师：
+注册老师：
         接口：/register_tea
         请求：POST
         参数：tea_name  教师姓名
@@ -343,5 +343,61 @@ API
         错误返回值:{
                    status:1,
                    message:errorMessage
+            }    
+            );
+社区学习圈板块
+写贴
+/writeNote
+接口：/writeNote
+        请求：POST
+       
+        参数：
+           poster_id 学生id
+            content 发帖内容
+            img 图片
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'成功'
+              
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+
+得到所有帖子
+
+接口：/getAllNotes
+        请求：get
+       
+        参数：无
+          
+          成功返回值：
+              array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+得到自己的帖子
+
+接口：/getOwnNotes
+        请求：get
+       
+        参数：stu_id  
+          
+          成功返回值：
+              array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
             }    
             );

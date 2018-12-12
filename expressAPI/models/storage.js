@@ -8,7 +8,7 @@ let client = new OSS({
   accessKeySecret: 'VtwJkolPmWi0k3RvxKqtG5v1wMSBWm',
   bucket: 'tutor666',
 });
-
+ 
 
 async function put(path, filename, temfile) {
   try {
@@ -31,7 +31,7 @@ exports.upload_head = async function (req, res, next) {
   var stu_id = req.body.stu_id;
   
   // console.log(req.files[0]);  // 上传的文件信息
-  if(!req.files[0]){
+  if(req.files.length==0){
     res.send({
       status:1,
       info:'error',
