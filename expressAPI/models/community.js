@@ -22,5 +22,5 @@ exports.writeNote = function (req, res) {
 
 }
 exports.selectAllNotes = function(req,res){
-    
+    console.log()
 }

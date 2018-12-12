@@ -115,6 +115,28 @@ API
                    message:errorMessage
             }    
             );
+头像上传
+接口：/upload_head
+        请求：post
+        
+        参数：
+            stu_id 用户id
+            file文件
+
+          成功返回值：
+                {
+                    status:0,
+                    headurl:url,
+                    info:'ok',
+                    message:'成功'
+                }
+              
+            }
+        错误返回值:{
+                   status:1,
+                   message:errorMessage
+            }    
+            );
 -------------------------老师 ----------------------------------------------------------------------
 成为老师：
         接口：/register_tea
@@ -130,6 +152,7 @@ API
              tea_grade   老师所在年级
              userID      老师身份证号码
              remark      备注信息
+             stu_token   学生ID
         调用形式：/register_tea
         成功返回值：
                 {
