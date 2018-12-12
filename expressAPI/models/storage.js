@@ -25,7 +25,8 @@ async function put(path, filename, temfile) {
 
 
 
-exports.upload = async function (req, res, next) {
+exports.upload_head = async function (req, res, next) {
+  console.log(req.body)
   console.log(req.body.stu_id);
   var stu_id = req.body.stu_id;
   // console.log(req.files[0]);  // 上传的文件信息
@@ -46,6 +47,7 @@ exports.upload = async function (req, res, next) {
   });
     res.send({
       status:0,
+      headurl:url,
       info:'ok',
       message:'成功'
     })

@@ -10,7 +10,7 @@ var student = require('./models/student');
 var teacher = require('./models/teacher');
 var video = require('./models/video');
 var order = require('./models/order');
-var forget = require('./models/forget');
+var forget = require('./models/forget'); 
 var storage = require('./models/storage');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
@@ -77,7 +77,7 @@ app.get('/select_order_tea',order.select_order_tea)
 // ---------------------------------------------------------------------------
 // 文件上传
 
-app.post('/upload', upload.any(),storage.upload);//用户头像更新
+app.post('/upload_head', upload.any(),storage.upload_head);//用户头像更新
 
 
 // -------------------------------------------
