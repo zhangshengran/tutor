@@ -76,18 +76,28 @@ async function put(path, filename, temfile) {
 
 
 exports.upload_head = async function (req, res, next) {
-  console.log(req.body)
-  console.log(req.body.stu_id);
+ 
   var stu_id = req.body.stu_id;
+  console.log(req.body.stu_id);
   console.log(req.files)
-  // console.log(req.files[0]);  // 上传的文件信息
+
+  // [{ 
+  // stu_id:把当前账号的stu_id包装进来
+  // fieldname: 'file',
+  // originalname: 'file',
+  // encoding: '7bit',
+  // mimetype: 'image/jpeg',
+  // destination: 'upload_tmp/',
+  // filename: '256cba791609986221b5d03d25eb26a4',
+  // path: 'upload_tmp/256cba791609986221b5d03d25eb26a4',
+  // size: 63620 } ]
   if(req.files.length==0){
     res.send(
      'error，请上传图片'
     )
   }else{
-    var filestyle = req.files[0].originalname.split('.')[1];
-    var file = stu_id + '.' + filestyle; //自定义文件名
+    var filetype = req.files[0].mimetype.split('/')[1];//获取传上来的文件类型
+    var file = req.files[0].stu_id + '.' + filetype; //自定义文件名
     var timestamp=new Date().getTime();
     var des_file = "./upload_tmp/" +timestamp+ file;
     await fs.rename(req.files[0].path, des_file)
