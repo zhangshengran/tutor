@@ -26,6 +26,7 @@ async function put(path, filename, temfile) {
 
 
 exports.upload_head = async function (req, res, next) {
+  console.log(req.files)
   var message = req.files[0];
   console.log('message'+message);
   var stu_id = message.fieldname;
