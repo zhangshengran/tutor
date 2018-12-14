@@ -158,7 +158,7 @@ exports.select_stu = function (req, res) {
     });
 }
 
-// 学生补全信息
+// 学生更新资料
 exports.completed = function (req, res) {
     var stu_id = req.body.stu_id;
     var stu_name = req.body.stu_name

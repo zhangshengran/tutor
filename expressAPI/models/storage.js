@@ -28,7 +28,7 @@ async function put(path, filename, temfile) {
 exports.upload_head = async function (req, res, next) {
   console.log(req.files)
   var message = req.files[0];
-  console.log('message'+message);
+  // console.log('message'+message);
   var stu_id = message.fieldname;
 
   if (!message) {
@@ -49,7 +49,9 @@ exports.upload_head = async function (req, res, next) {
     var file = stu_id + '.' + filetype; //自定义文件名
     var timestamp=new Date().getTime();
     var des_file = "./upload_tmp/" +timestamp+ file;
-    await fs.rename(req.files[0].path, des_file)
+    console.log('message.path'+message.path);
+    console.log('des_file'+des_file);
+    await fs.rename(message.path, des_file)
     var url = await put('head/', file, des_file);
       await con.query( 'UPDATE students SET head_src = ? WHERE stu_id = ?',[url,stu_id],(err,result)=>{
         if(err){
