@@ -46,8 +46,8 @@ exports.upload_head = async function (req, res, next) {
       })
     }else{
     var filetype = message.mimetype.split('/')[1];//获取传上来的文件类型
-    var file = stu_id + '.' + filetype; //自定义文件名
     var timestamp=new Date().getTime();
+    var file = timestamp + '.' + filetype; //自定义文件名
     var des_file = "./upload_tmp/" +timestamp+ file;
     await fs.rename(message.path, des_file)
     var url = await aliyun.aliyunPUT_head('head/', file, des_file);

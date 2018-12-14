@@ -71,6 +71,7 @@ exports.getOwnNotes = function(req,res){
 
     con.query('select content,img_src1,stu_name,head_src from students,community where students.stu_id=community.poster_id and students.stu_id=?',[stu_id],(err,result)=>{
       if(err){
+        
         res.send({
           status:1,
           info:'error',
