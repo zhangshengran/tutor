@@ -1,7 +1,7 @@
 let OSS = require('ali-oss');
 var fs = require('fs');
 var con = require('./db').con;
-
+var aliyun = require('./aliyun');
 let client = new OSS({
   region: 'oss-cn-beijing',
   accessKeyId: 'LTAILzRjytI5AIO8',
@@ -50,7 +50,7 @@ exports.upload_head = async function (req, res, next) {
     var timestamp=new Date().getTime();
     var des_file = "./upload_tmp/" +timestamp+ file;
     await fs.rename(message.path, des_file)
-    var url = await put('head/', file, des_file);
+    var url = await aliyun.aliyunPUT_head('head/', file, des_file);
       await con.query( 'UPDATE students SET head_src = ? WHERE stu_id = ?',[url,stu_id],(err,result)=>{
         if(err){
           res.send({

@@ -11,7 +11,7 @@ let client = new OSS({
 
 // path为指定阿里云OSS的上传位置（记得加 ‘/’，例如 head/，filename为上传的文件命名，temfile为本地服务器存储位置）
 // 本函数返回最后上传的文件url
-exports.aliyunPUT = async function put(path, filename, temfile) {
+exports.aliyunPUT_head = async function put(path, filename, temfile) {
   try {
     let result = await client.put(path + filename, temfile);
     var url = result.url;//文件读取地址

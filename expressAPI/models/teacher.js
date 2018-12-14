@@ -54,7 +54,9 @@ exports.register_tea = function (req, res) {
 
 }
 exports.select_tea = function (req, res) {
-    con.query('select * from teachers', (err, result) => {
+
+
+    con.query('select teachers.*,students.head_src from teachers,students where teachers.tea_id = students.is_tea_ID', (err, result) => {
         if (err) {
             res.send({
                 status: 1,
