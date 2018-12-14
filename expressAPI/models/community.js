@@ -2,11 +2,15 @@ var con = require('./db').con;
 var aliyun = require('./aliyun');
 var fs = require('fs');
 exports.writeNote = async function (req, res, next) { 
-    var poster_id = req.body.poster_id;
-    var content = req.body.content;
-    var img = req.body.img;
-    console.log(req.files);
-    if(!content &&req.files.length ==0){
+
+  console.log(req.files)
+  var message = req.files[0];
+  console.log(message);
+
+    var poster_id = message.fieldname;
+    var content = message.originalname;
+
+    if(!content && req.files.length == 0){
       res.send({
         status:1,
         info:'error',
@@ -14,15 +18,15 @@ exports.writeNote = async function (req, res, next) {
       })
     }else{
       if(req.files.length!=0){
-        var filestyle = req.files[0].originalname.split('.')[1];//获得上传文件类型
+        var filetype = message.mimetype.split('/')[1];//获得上传文件类型
       var timestamp=new Date().getTime();//时间戳
-      var file =timestamp+ '.' + filestyle; //自定义文件名
+      var file =timestamp+ '.' + filetype; //自定义文件名
      
       var des_file = "./upload_tmp/" + file;
       
-      await fs.rename(req.files[0].path, des_file)
+      await fs.rename(message.path, des_file)
   
-      var img_src1 = await aliyun.aliyunPUT('community/', file, des_file);
+      var img_src1 = await aliyun.aliyunPUT_community('community/', file, des_file);
       await con.query( 'insert into community(poster_id,content,img_src1) values(?,?,?)',[poster_id,content,img_src1],(err,result)=>{
         if(err){
           res.send({
@@ -32,6 +36,7 @@ exports.writeNote = async function (req, res, next) {
           })
         }
       });
+ 
         res.send({
           status:0,
           info:'ok',

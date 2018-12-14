@@ -22,3 +22,26 @@ exports.aliyunPUT = async function put(path, filename, temfile) {
     console.log(err);
   }
 }
+
+
+
+let client2 = new OSS({
+  region: 'oss-cn-beijing',
+  accessKeyId: 'LTAILzRjytI5AIO8',
+  accessKeySecret: 'VtwJkolPmWi0k3RvxKqtG5v1wMSBWm',
+  bucket: 'tutor-community',
+});
+
+
+
+exports.aliyunPUT_community = async function put(path, filename, temfile) {
+  try {
+    let result = await client2.put(path + filename, temfile);
+    var url = result.url;//文件读取地址
+   return new Promise((resolved)=>{
+     resolved(url);
+   })
+  } catch (err) {
+    console.log(err);
+  }
+}
