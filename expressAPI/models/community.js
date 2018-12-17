@@ -5,7 +5,7 @@ exports.writeNote = async function (req, res, next) {
 
   console.log(req.files)
   var message = req.files[0];
-  console.log(message);
+  // console.log(message);
 
     var poster_id = message.fieldname;
     var content = message.originalname;
