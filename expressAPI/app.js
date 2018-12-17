@@ -57,6 +57,7 @@ app.post('/register_tea',teacher.register_tea);
 app.get('/select_tea',teacher.select_tea);
 app.post('/updata_tea',teacher.completed); 
 app.get('/showdata_tea',teacher.showdata);
+app.get('/search',teacher.search);
 // 学生接口
 app.post('/register_stu',student.register_stu);
 app.get('/verify',student.verify);  
