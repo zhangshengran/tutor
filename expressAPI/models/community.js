@@ -69,7 +69,7 @@ exports.getOwnNotes = function(req,res){
     // 'content,img_src1,'+
     // ''
 
-    con.query('select content,img_src1,stu_name,head_src from students,community where students.stu_id=community.poster_id and students.stu_id=?',[stu_id],(err,result)=>{
+    con.query('select content,img_src1,stu_name,head_src from students,community where students.stu_id=community.poster_id and students.stu_id=? ORDER BY co_id DESC',[stu_id],(err,result)=>{
       if(err){
         
         res.send({
@@ -85,7 +85,7 @@ exports.getOwnNotes = function(req,res){
 
 
 exports.getAllNotes = function(req,res){
-  con.query('select content,img_src1,stu_name,head_src from students,community where students.stu_id=community.poster_id',(err,result)=>{
+  con.query('select content,img_src1,stu_name,head_src from students,community where students.stu_id=community.poster_id ORDER BY co_id DESC',(err,result)=>{
     if(err){
       res.send({
         status:1,
