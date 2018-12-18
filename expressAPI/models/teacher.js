@@ -134,9 +134,19 @@ exports.search = function(req,res){
 
     var search_txt = req.query.search_txt;
   
-    var sql = 'select * from teachers where  stu_grade = ? or stu_courses = ? or tea_name like'+con.escape(search_txt+"%");
-    con.query(sql,[search_txt,search_txt],function(err,result){
-    
+    // var sql = 'select * from teachers where  stu_grade = ? or stu_courses = ? or tea_name like'+con.escape(search_txt+"%");
+
+
+        // var sql = 'select * from teachers where  stu_grade like'+con.escape(search_txt+"%")+ 'or stu_courses like'+con.escape(search_txt+"%")+ 'or tea_name like'+con.escape(search_txt+"%");
+//   var sql = 'select  teachers.*, students.head_src'
+//             +'from teachers,students'
+//             +'where teachers.tea_id=students.is_tea_ID or teachers.stu_grade like '+con.escape(search_txt+"%")
+//             +'or  teachers.tea_name like '+con.escape(search_txt+"%")+' or teachers.stu_courses like '+con.escape(search_txt+"%")
+//             +'group by teachers.tea_id'
+        // con.query(sql,[search_txt,search_txt,search_txt],function(err,result){
+
+            var sql = 'select  teachers.*, students.head_src from teachers,students where teachers.tea_id=students.is_tea_ID and teachers.stu_grade like '+con.escape("%"+search_txt+"%") + 'or  teachers.tea_name like '+con.escape("%"+search_txt+"%")+' or teachers.stu_courses like '+con.escape("%"+search_txt+"%")+ 'group by teachers.tea_id'
+            con.query(sql,[search_txt],function(err,result){
     if (err) {
       res.send({
         status: 1,

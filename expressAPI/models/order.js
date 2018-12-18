@@ -42,8 +42,7 @@ exports.select_order_stu = function(req,res){
                 message: '数据库读入错误'
                
             })
-        }else{
-        
+        }else{ 
             res.json(result);
         }
     })
@@ -70,5 +69,4 @@ exports.select_order_tea = function(req,res){
         }
     })
 }
-
 

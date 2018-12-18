@@ -3,7 +3,6 @@ var aliyun = require('./aliyun');
 var fs = require('fs');
 exports.writeNote = async function (req, res, next) { 
 
-  console.log(req.files)
   var message = req.files[0];
   // console.log(message);
 
