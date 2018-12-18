@@ -135,7 +135,7 @@ exports.search = function(req,res){
     var search_txt = req.query.search_txt;
   
             var sql = 'select  teachers.*, students.head_src from teachers,students where teachers.tea_id=students.is_tea_ID and teachers.stu_grade like '+con.escape("%"+search_txt+"%") + 'or  teachers.tea_name like '+con.escape("%"+search_txt+"%")+' or teachers.stu_courses like '+con.escape("%"+search_txt+"%")+ 'group by teachers.tea_id'
-            con.query(sql,[search_txt],function(err,result){
+            con.query(sql,[search_txt,search_txt,search_txt],function(err,result){
     if (err) {
       res.send({
         status: 1,
