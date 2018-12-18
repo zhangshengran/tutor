@@ -132,19 +132,40 @@ exports.showdata = function(req,res){
     })
 }
 
+// exports.search = function(req,res){
+
+//     var inpvalue = req.query.search_txt;
+//     console.log(inpvalue);
+  
+//     sql = 'select * from `teachers` where stu_grade = \''+inpvalue+'\' or stu_courses = \''+inpvalue+'\'';
+//     con.query(sql,function(err,result){
+    
+//     if (err) {
+//       res.send({
+//         status: 1,
+//         info:   'error',
+//         message:'数据库错误'
+//       });
+  
+//     }else{
+//       res.json(result);
+//     }
+//   });
+//   };
+  
 exports.search = function(req,res){
 
-    var inpvalue = req.query.search_txt;
-    console.log(inpvalue);
+    var search_txt = req.query.search_txt;
+    console.log(search_txt);
   
-    sql = 'select * from `teachers` where stu_grade = \''+inpvalue+'\' or stu_courses = \''+inpvalue+'\'';
-    con.query(sql,function(err,result){
+    var sql = 'select * from teachers where stu_grade = ? or stu_courses = ? or tea_name like'+con.escape(search_txt+"%");
+    con.query(sql,[search_txt,search_txt],function(err,result){
     
     if (err) {
       res.send({
         status: 1,
         info:   'error',
-        message:'数据库错误'
+        message:'系统错误'
       });
   
     }else{
@@ -152,4 +173,3 @@ exports.search = function(req,res){
     }
   });
   };
-  
