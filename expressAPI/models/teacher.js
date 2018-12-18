@@ -132,27 +132,6 @@ exports.showdata = function(req,res){
     })
 }
 
-// exports.search = function(req,res){
-
-//     var inpvalue = req.query.search_txt;
-//     console.log(inpvalue);
-  
-//     sql = 'select * from `teachers` where stu_grade = \''+inpvalue+'\' or stu_courses = \''+inpvalue+'\'';
-//     con.query(sql,function(err,result){
-    
-//     if (err) {
-//       res.send({
-//         status: 1,
-//         info:   'error',
-//         message:'数据库错误'
-//       });
-  
-//     }else{
-//       res.json(result);
-//     }
-//   });
-//   };
-  
 exports.search = function(req,res){
 
     var search_txt = req.query.search_txt;

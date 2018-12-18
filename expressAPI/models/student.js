@@ -5,7 +5,7 @@ var con = require('./db').con;
 
 // 验证码接口
 exports.verify = function (req, res) {
-    console.log(req.query);
+    
     var stu_phone = req.query.stu_phone;//获得请求的手机号
 
 
@@ -28,7 +28,7 @@ exports.verify = function (req, res) {
 
                 var tpl_value = Math.round(Math.random() * 10 * 10 * 10 * 10 * 10)//获得随机5位验证码
 
-                console.log(stu_phone)
+                
             
                 var queryData = querystring.stringify({
                     "mobile": stu_phone,  // 接受短信的用户手机号码
@@ -43,7 +43,7 @@ exports.verify = function (req, res) {
                     if (!error && response.statusCode == 200) {
                         // console.log(body) // 打印接口返回内容      
                         var jsonObj = JSON.parse(body); // 解析接口返回的JSON内容 
-                        console.log(jsonObj);
+                       
                         if (jsonObj.error_code !== 0) {
                             res.send({
                                 status: 1,
@@ -72,13 +72,12 @@ exports.verify = function (req, res) {
 // 学生注册接口
 exports.register_stu = function (req, res) {
     // console.log(req);
-    console.log(req.body);
+   
 
     // console.log(req.headers);
 
     var stu_phone = req.body.stu_phone;
     var stu_password = req.body.stu_password;
-    console.log("获得的账号" + stu_phone, "获得的密码" + stu_password);
     con.query('insert into students(stu_phone,stu_password) values(?,?)',
         [stu_phone, stu_password], (err, result) => {
             if (err) {
@@ -124,13 +123,12 @@ exports.select_stu = function (req, res) {
                 })
             }
             else {
-                console.log('数据库查到的ID' + result[0].stu_id);
-                console.log('数据库查到的密码' + result[0].stu_password);
+            
                 var tokenID = result[0].stu_id;
                 var tea_token = result[0].is_tea_ID;
                 if (result[0].stu_password == stu_password) {
                     con.query('select * from students where stu_phone=?', [stu_phone], (err, result) => {
-                        console.log(result);
+                    
                         res.send({
                             status: 0,
                             info: 'OK',
@@ -165,7 +163,7 @@ exports.completed = function (req, res) {
     var stu_age = req.body.stu_age;
     var stu_sex = req.body.stu_sex;
     var stu_grade = req.body.stu_grade;
-    console.log(req.body)
+
     dbstr = 'UPDATE students' +
         ' set stu_name = ?,stu_age = ?,stu_sex = ?,stu_grade = ?' +
         ' WHERE stu_id = ?'
@@ -191,7 +189,7 @@ exports.showdata = function (req, res) {
 
     var stu_id = req.query.stu_id;
 
-    console.log(stu_id)
+  
     con.query('select * from students where stu_id = ?', [stu_id], (err, result) => {
         if (err) {
             res.send({
@@ -213,9 +211,7 @@ var aliyun = require('./aliyun');
 
 
 exports.upload_head = async function (req, res, next) {
-  console.log(req.files)
   var message = req.files[0];
-  console.log('message'+message);
   var stu_id = message.fieldname;
 
   if (!message) {

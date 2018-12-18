@@ -44,7 +44,7 @@ exports.select_order_stu = function(req,res){
                
             })
         }else{
-            console.log(result)
+        
             res.json(result);
         }
     })
@@ -66,7 +66,7 @@ exports.select_order_tea = function(req,res){
                
             })
         }else{
-            console.log(result)
+           
             res.json(result);
         }
     })
