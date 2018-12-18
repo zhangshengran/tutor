@@ -158,7 +158,7 @@ exports.search = function(req,res){
     var search_txt = req.query.search_txt;
     console.log(search_txt);
   
-    var sql = 'select * from teachers where stu_grade = ? or stu_courses = ? or tea_name like'+con.escape(search_txt+"%");
+    var sql = 'select * from teachers where  stu_grade = ? or stu_courses = ? or tea_name like'+con.escape(search_txt+"%");
     con.query(sql,[search_txt,search_txt],function(err,result){
     
     if (err) {
@@ -169,6 +169,7 @@ exports.search = function(req,res){
       });
   
     }else{
+        // con.query('select',[],function(err,result){})
       res.json(result);
     }
   });

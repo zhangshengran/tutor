@@ -78,7 +78,7 @@ app.get('/select_order_tea',order.select_order_tea)
 // ---------------------------------------------------------------------------
 // 文件上传
 // app.post('/upload_test', upload.any(),storage.upload_test);
-app.post('/upload_head', upload.any(),storage.upload_head);//用户头像更新
+app.post('/upload_head', upload.any(),student.upload_head);//用户头像更新
 // 学习圈
 // 写帖子
 app.post('/writeNote',upload.any(),community.writeNote);
