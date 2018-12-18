@@ -40,7 +40,7 @@ exports.findVerify = function (req, res) {
 
         request(queryUrl, function (error, response, body) {
           if (!error && response.statusCode == 200) {
-            // console.log(body) // 打印接口返回内容      
+            
             var jsonObj = JSON.parse(body); // 解析接口返回的JSON内容 
           
             if (jsonObj.error_code !== 0) {
@@ -73,8 +73,7 @@ exports.findVerify = function (req, res) {
 
 
 exports.forget = function (req, res) {
-  // console.log(req);
-  console.log(req.body);
+
 
   var stu_phone = req.body.stu_phone;
   var stu_password = req.body.stu_password;
@@ -101,3 +100,4 @@ exports.forget = function (req, res) {
 
   })
 }
+

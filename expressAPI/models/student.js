@@ -71,10 +71,7 @@ exports.verify = function (req, res) {
 
 // 学生注册接口
 exports.register_stu = function (req, res) {
-    // console.log(req);
-   
 
-    // console.log(req.headers);
 
     var stu_phone = req.body.stu_phone;
     var stu_password = req.body.stu_password;

@@ -2,7 +2,6 @@ var con = require('./db').con;
 
 // 成为老师
 exports.register_tea = function (req, res) {
-    console.log(req.body);
     var tea_name = req.body.tea_name;
     var tea_age = req.body.tea_age;
     var tea_sex = req.body.tea_sex;
@@ -95,7 +94,6 @@ exports.completed = function (req, res) {
     var tea_major = req.body.tea_major;
     var tea_grade = req.body.tea_grade;
     var remark = req.body.remark;
-    console.log(req.body)
     dbstr = 'UPDATE teachers'+
     ' set tea_name = ?,tea_age = ?,tea_sex= ?,tea_email = ?,stu_grade = ?,stu_courses = ?,tea_school=?,tea_major=?,tea_grade =?,remark=?'+
     ' WHERE tea_id = ?'
@@ -135,7 +133,6 @@ exports.showdata = function(req,res){
 exports.search = function(req,res){
 
     var search_txt = req.query.search_txt;
-    console.log(search_txt);
   
     var sql = 'select * from teachers where  stu_grade = ? or stu_courses = ? or tea_name like'+con.escape(search_txt+"%");
     con.query(sql,[search_txt,search_txt],function(err,result){
@@ -153,3 +150,6 @@ exports.search = function(req,res){
     }
   });
   };
+
+
+ 
