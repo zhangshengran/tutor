@@ -2,6 +2,7 @@ var con = require('./db').con;
 
 // 成为老师
 exports.register_tea = function (req, res) {
+    console.log(req.body)
     var tea_name = req.body.tea_name;
     var tea_age = req.body.tea_age;
     var tea_sex = req.body.tea_sex;
