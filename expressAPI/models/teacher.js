@@ -1,4 +1,8 @@
-var con = require('./db').con;
+// var con = require('./db').con;
+
+
+var con = require('../config/config').con;
+
 
 // 成为老师
 exports.register_tea = function (req, res) {

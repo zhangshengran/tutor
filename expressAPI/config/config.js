@@ -1,11 +1,20 @@
+
+
 let OSS = require('ali-oss');
-var fs = require('fs');
-var con = require('./db').con;
+const mysql = require('mysql'),
+con = mysql.createConnection({
+    host: '39.105.111.123',
+    user: 'root',
+    password: 'xingyun2016',
+    database: 'tutor'
+});
+exports.con = con;
+
 
 let client = new OSS({
   region: 'oss-cn-beijing',
   accessKeyId: 'LTAILzRjytI5AIO8',
-  accessKeySecret: 'VtwJkolPmWi0k3RvxKqtG5v1wMSBWm', 
+  accessKeySecret: 'VtwJkolPmWi0k3RvxKqtG5v1wMSBWm',
   bucket: 'tutor666',
 });
 

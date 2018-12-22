@@ -11,9 +11,16 @@ var teacher = require('./models/teacher');
 var video = require('./models/video');
 var order = require('./models/order');
 var forget = require('./models/forget'); 
-var storage = require('./models/storage');
 var community = require('./models/community');
 var learn = require('./models/learn');
+
+
+var learn2 = require('./backAPI/learn');
+var common = require('./backAPI/common');
+
+
+
+
 
 
 var session = require('express-session');
@@ -64,10 +71,10 @@ app.get('/verify',student.verify);
 app.post('/login',student.select_stu);
 app.post('/updata_stu',student.completed);
 app.get('/showdata_stu',student.showdata);
-
+app.post('/upload_head', upload.any(),student.upload_head);//用户头像更新
 //忘记密码-----------------------------------------------------------------
 app.get('/findVerify',forget.findVerify);
-app.post('/forget',forget.forget);
+app.post('/forget',forget.forget); 
 //API -----------------------------------------------------------------
 // 订单
 app.post('/order_set',order.order_set);  
@@ -76,8 +83,7 @@ app.get('/select_order_tea',order.select_order_tea)
 
 // ---------------------------------------------------------------------------
 // 文件上传
-// app.post('/upload_test', upload.any(),storage.upload_test);
-app.post('/upload_head', upload.any(),student.upload_head);//用户头像更新
+
 // 学习圈模块
 app.get('/video',learn.getvideos);
 app.get('/news',learn.getNews);
@@ -90,6 +96,22 @@ app.post('/writeNote',upload.any(),community.writeNote);
 app.get('/getAllNotes',community.getAllNotes);
 // 得到自己发的所有帖子
 app.get('/getOwnNotes',community.getOwnNotes);
+
+
+
+// backAPI------------------------------------------------
+app.post('/createVideo',upload.any(),learn2.createVideo);
+app.get('/getStu',common.getStu);
+app.get('/deStu',common.deStu);
+app.get('/showOrders',common.showOrders);
+app.get('/deVideo',learn2.deVideo);
+
+
+
+
+
+
+
 // -------------------------------------------
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

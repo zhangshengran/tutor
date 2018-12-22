@@ -1,4 +1,10 @@
-var con = require('./db').con;
+// var con = require('./db').con;
+
+var con = require('../config/config').con;
+
+
+
+
 // 创建订单
 exports.order_set = function (req, res) {
     var stu_id = req.body.stu_id;

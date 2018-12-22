@@ -226,6 +226,23 @@ API
             }    
             );
 
+
+            搜索老师
+接口：/search
+        请求：get
+        参数：
+           search_txt
+          成功返回值：
+                {
+                     array[object]
+                }  
+            }
+        错误返回值:{
+                   status:1,
+                   message:errorMessage
+            }    
+            );
+
 -------------------------老师 ----------------------------------------------------------------------.
 
 
@@ -394,6 +411,148 @@ API
           
           成功返回值：
               array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+
+-----------------------------学习圈0--------------------------------------
+学习视频
+接口：/video
+        请求：get
+       
+        参数：无
+          
+          成功返回值：
+              array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+新闻
+接口：/news
+        请求：get
+       
+        参数：无
+          
+          成功返回值：
+              array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+
+资料
+接口：/learnFile
+        请求：get
+       
+        参数：fileVerify   资料分类识别码
+          
+          成功返回值：
+              array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+
+后端接口
+-------------------------------back------------------------------------
+查找所有学生
+接口：/getStu
+        请求：get
+       
+        参数：无
+          
+          成功返回值：
+              array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+删除学生
+        接口：/deStu
+        请求：get
+       
+        参数：stu_id
+          
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'删除成功'
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+查看订单
+       接口：/showOrders
+        请求：get
+       
+        参数：无
+          
+          成功返回值：
+              array[object]
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+删除视频
+   接口：/deVideo
+        请求：get
+       
+        参数：id  视频id
+          
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'删除成功'
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+            
+发布视频
+  接口：/createVideo
+        请求：post
+       
+        参数：course_name 视频名
+        course_time       发布时间
+        course_author     发布作者
+          
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'上传成功'
             }
         错误返回值:{
                     status:1,

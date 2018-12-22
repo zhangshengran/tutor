@@ -1,7 +1,12 @@
 var request = require('request');
 var querystring = require('querystring');
 
-var con = require('./db').con;
+// var con = require('./db').con;
+
+var con = require('../config/config').con;
+
+
+
 
 // 找回密码发送验证码接口
 exports.findVerify = function (req, res) {
