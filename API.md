@@ -541,10 +541,29 @@ API
             );
 
             
+删除新闻
+   接口：/delNews
+        请求：get
+       
+        参数：id  新闻id
+          
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'删除成功'
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+
+
 发布视频
   接口：/createVideo
         请求：post
-       
         参数：course_name 视频名
         course_time       发布时间
         course_author     发布作者
@@ -560,3 +579,61 @@ API
                     message:'数据库错误'
             }    
             );
+
+
+上传学习文件
+  接口：/upLearnFile
+        请求：post
+     参数：var file_name  文件名
+     upload_time    上传时间
+     upload_peo    上传人
+     fileVerify    文件识别码  0为初中1为高中2为推荐
+     srore   文件评分
+          
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'上传成功'
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+删除学习资料
+ 接口：/delLearnFile
+        请求：get
+       
+        参数：id  文件id
+          
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'删除成功'
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );
+
+删帖子
+ 接口：/delposter
+        请求：get
+       
+        参数：co_id
+          
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'删除成功'
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );           

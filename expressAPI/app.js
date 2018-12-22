@@ -100,13 +100,16 @@ app.get('/getOwnNotes',community.getOwnNotes);
 
 
 // backAPI------------------------------------------------
-app.post('/createVideo',upload.any(),learn2.createVideo);
+ 
 app.get('/getStu',common.getStu);
 app.get('/deStu',common.deStu);
 app.get('/showOrders',common.showOrders);
 app.get('/deVideo',learn2.deVideo);
-
-
+app.post('/writeNew',learn2.writeNew);
+app.post('/createVideo',upload.any(),learn2.createVideo);
+app.post('/upLearnFile',upload.any(),learn2.upLearnFile);
+app.get('/delLearnFile',learn2.delLearnFile);
+app.get('/delposter',learn2.delposter);
 
 
 
