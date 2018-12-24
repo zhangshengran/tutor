@@ -110,8 +110,9 @@ app.post('/createVideo',upload.any(),learn2.createVideo);
 app.post('/upLearnFile',upload.any(),learn2.upLearnFile);
 app.get('/delLearnFile',learn2.delLearnFile);
 app.get('/delposter',learn2.delposter);
+app.get('/delNews',learn2.delNews);
 
-
+ 
 
 
 
