@@ -159,60 +159,10 @@ exports.delNews = function (req, res) {
     });
 }
 
-// exports.upLearnFile = async function (req, res) {
-
-//     var file_name = req.body.file_name || req.files[0].originalname;
-//     var upload_time = req.body.upload_time;
-//     var upload_peo = req.body.upload_peo;
-//     var fileVerify = req.body.fileVerify;
-//     var srore = req.body.srore;
-
-
-//   // 上传的文件信息
-//     console.log(req.body);
-//     console.log(req.files);
-
-//     // res.send('OK1');
-//     var time = new Date().getTime();
-//     var type = req.files[0].originalname.split('.')[1];
-//     var name =  file_name+time+'.'+type;
-//     var des_file = "./upload_tmp/" + name;
-
-//    var re =  await fs.rename(req.files[0].path, des_file, function (error) {
-//         if (error) {
-//             console.log(error);
-//         }else{
-//             return new Promise((resolve)=>{
-//                 resolve('OK');
-//             })
-//         }
-//     })
-
-//     console.log('数据'+re);
-//     var file_src = await aliyun.aliyunPUT_learn('material/', name, des_file);
-//     var sql = 'insert into learnFile(file_name,upload_time,upload_peo,fileVerify,srore,file_src) values(?,?,?,?,?,?)';
-//     await con.query(sql, [file_name,upload_time,upload_peo,fileVerify,srore,file_src], (err, result) => {
-//         if (err) {
-//             res.send(
-//                 {
-//                     status: 1,
-//                     message: '数据库错误'
-//                 }
-//             )
-//         } else {
-//             res.send( {
-//                 status: 0,
-//                 message: 'OK'
-//             });
-//         }
-//     })
-
-// }
 
 
 
-
-exports.upLearnFile = async function (req, res) {
+exports.upLearnFile =  function (req, res) {
 
     var file_name = req.body.file_name || req.files[0].originalname;
     var upload_time = req.body.upload_time;
@@ -250,9 +200,6 @@ exports.upLearnFile = async function (req, res) {
         })
     }
 
-
-
-
     fs.rename(req.files[0].path, des_file, function (error) {
         if (error) {
             console.log(error);
@@ -261,9 +208,6 @@ exports.upLearnFile = async function (req, res) {
 
         }
     })
-
-
-
 
 
 }

@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
 var usersRouter = require('./routes/users');
 var student = require('./models/student');
 var teacher = require('./models/teacher');
@@ -44,6 +44,7 @@ app.all('*', function (req, res, next) {
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static(path.join(__dirname, 'public')));
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
@@ -55,7 +56,10 @@ app.use(session({
     maxAge: 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
   },
 }));
-app.use('/', indexRouter);
+// app.use('/', loginRouter);
+app.use('/',express.static('dist'))
+
+
 app.use('/users', usersRouter);
 
 //API -----------------------------------------------------------------
