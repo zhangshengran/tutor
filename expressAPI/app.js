@@ -29,7 +29,7 @@ var fs = require('fs');
 var multer = require('multer');
 var upload = multer({ dest: 'upload_tmp/' });
 var app = express();
-app.use(require('body-parser')())
+app.use(require('body-parser')()) 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -59,9 +59,8 @@ app.use(session({
   },
 }));
 app.use('/', loginRouter);
-
+// app.use(express.static(path.join(__dirname,'dist')));
 app.use('/back', express.static('dist'))
-
 app.use('/users', usersRouter);
 
 //API -----------------------------------------------------------------

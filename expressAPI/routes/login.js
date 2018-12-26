@@ -24,10 +24,10 @@ router.post('/',(req, res, next)=>{
   if(username == 'admin' && password == 'admin'){
     req.session.username = username; // 登录成功，设置 session
     console.log( req.session);
-    res.redirect('/back');
+    res.redirect('/home');
   }
   else {
-
+ 
     res.send({
       status:1,
       message:'登陆失败'
