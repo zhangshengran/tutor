@@ -637,3 +637,21 @@ API
                     message:'数据库错误'
             }    
             );           
+新闻发布
+接口：/writeNew
+        请求：post
+       
+        参数：header
+             content
+             time
+          成功返回值：
+               status:0,
+                info:'ok',
+                message:'发布成功'
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            );       

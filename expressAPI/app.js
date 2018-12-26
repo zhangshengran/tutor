@@ -10,7 +10,7 @@ var student = require('./models/student');
 var teacher = require('./models/teacher');
 var video = require('./models/video');
 var order = require('./models/order');
-var forget = require('./models/forget'); 
+var forget = require('./models/forget');
 var community = require('./models/community');
 var learn = require('./models/learn');
 
@@ -45,7 +45,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.use(session({
@@ -56,78 +56,78 @@ app.use(session({
     maxAge: 1000 * 60 * 3, // 设置 session 的有效时间，单位毫秒
   },
 }));
-// app.use('/', loginRouter);
-app.use('/',express.static('dist'))
+app.use('/', loginRouter);
+app.use('/back', express.static('dist'))
 
 
 app.use('/users', usersRouter);
 
 //API -----------------------------------------------------------------
 // 老师接口
-app.post('/register_tea',teacher.register_tea);
-app.get('/select_tea',teacher.select_tea);
-app.post('/updata_tea',teacher.completed); 
-app.get('/showdata_tea',teacher.showdata);
-app.get('/search',teacher.search);
+app.post('/register_tea', teacher.register_tea);
+app.get('/select_tea', teacher.select_tea);
+app.post('/updata_tea', teacher.completed);
+app.get('/showdata_tea', teacher.showdata);
+app.get('/search', teacher.search);
 // 学生接口
-app.post('/register_stu',student.register_stu);
-app.get('/verify',student.verify);  
-app.post('/login',student.select_stu);
-app.post('/updata_stu',student.completed);
-app.get('/showdata_stu',student.showdata);
-app.post('/upload_head', upload.any(),student.upload_head);//用户头像更新
+app.post('/register_stu', student.register_stu);
+app.get('/verify', student.verify);
+app.post('/login', student.select_stu);
+app.post('/updata_stu', student.completed);
+app.get('/showdata_stu', student.showdata);
+app.post('/upload_head', upload.any(), student.upload_head);//用户头像更新
 //忘记密码-----------------------------------------------------------------
-app.get('/findVerify',forget.findVerify);
-app.post('/forget',forget.forget); 
+app.get('/findVerify', forget.findVerify);
+app.post('/forget', forget.forget);
 //API -----------------------------------------------------------------
 // 订单
-app.post('/order_set',order.order_set);  
-app.get('/select_order_stu',order.select_order_stu)
-app.get('/select_order_tea',order.select_order_tea)
+app.post('/order_set', order.order_set);
+app.get('/select_order_stu', order.select_order_stu)
+app.get('/select_order_tea', order.select_order_tea)
 
 // ---------------------------------------------------------------------------
 // 文件上传
 
 // 学习圈模块
-app.get('/video',learn.getvideos);
-app.get('/news',learn.getNews);
-app.get('/learnFile',learn.file_download);
+app.get('/video', learn.getvideos);
+app.get('/news', learn.getNews);
+app.get('/learnFile', learn.file_download);
 
 // 社区
 // 写帖子
-app.post('/writeNote',upload.any(),community.writeNote);
+app.post('/writeNote', upload.any(), community.writeNote);
 // 获得所有帖子
-app.get('/getAllNotes',community.getAllNotes);
+app.get('/getAllNotes', community.getAllNotes);
 // 得到自己发的所有帖子
-app.get('/getOwnNotes',community.getOwnNotes);
+app.get('/getOwnNotes', community.getOwnNotes);
 
 
 
 // backAPI------------------------------------------------
- 
-app.get('/getStu',common.getStu);
-app.get('/deStu',common.deStu);
-app.get('/showOrders',common.showOrders);
-app.get('/deVideo',learn2.deVideo);
-app.post('/writeNew',upload.any(),learn2.writeNew);
-app.post('/createVideo',upload.any(),learn2.createVideo);
-app.post('/upLearnFile',upload.any(),learn2.upLearnFile);
-app.get('/delLearnFile',learn2.delLearnFile);
-app.get('/delposter',learn2.delposter);
-app.get('/delNews',learn2.delNews);
 
- 
+app.get('/getStu', common.getStu);
+app.get('/deStu', common.deStu);
+app.get('/showOrders', common.showOrders);
+app.get('/deVideo', learn2.deVideo);
+app.post('/writeNew', upload.any(), learn2.writeNew);
+app.post('/createVideo', upload.any(), learn2.createVideo);
+app.post('/upLearnFile', upload.any(), learn2.upLearnFile);
+app.get('/delLearnFile', learn2.delLearnFile);
+app.get('/delposter', learn2.delposter);
+app.get('/delNews', learn2.delNews);
+
+
 
 
 
 // -------------------------------------------
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
