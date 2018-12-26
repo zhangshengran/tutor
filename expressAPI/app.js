@@ -59,7 +59,6 @@ app.use(session({
   },
 }));
 app.use('/', loginRouter);
-// app.use(express.static(path.join(__dirname,'dist')));
 app.use('/back', express.static('dist'))
 app.use('/users', usersRouter);
 
@@ -102,7 +101,8 @@ app.get('/getAllNotes', community.getAllNotes);
 // 得到自己发的所有帖子
 app.get('/getOwnNotes', community.getOwnNotes);
 
-
+app.post('/advise',forget.postadvise);
+app.get('/advise',forget.getadvise);
 
 // backAPI------------------------------------------------
 
