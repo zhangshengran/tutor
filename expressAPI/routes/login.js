@@ -24,7 +24,7 @@ router.post('/',(req, res, next)=>{
   if(username == 'admin' && password == 'admin'){
     req.session.username = username; // 登录成功，设置 session
     console.log( req.session);
-    res.redirect('/home');
+    res.redirect('/back');
   }
   else {
 

@@ -33,6 +33,7 @@ app.use(require('body-parser')())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -41,11 +42,12 @@ app.all('*', function (req, res, next) {
   res.header("Content-Type", "application/json;charset=utf-8");
   next();
 });
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.use(session({
@@ -57,8 +59,8 @@ app.use(session({
   },
 }));
 app.use('/', loginRouter);
-app.use('/back', express.static('dist'))
 
+app.use('/back', express.static('dist'))
 
 app.use('/users', usersRouter);
 
