@@ -55,3 +55,177 @@ exports.showOrders = function(req,res){
     })
 }
 
+
+
+
+
+
+
+
+//建议查询
+exports.advicesel = function(req,res){
+    con.query('SELECT * FROM advice', function(err,result) {
+        if (err) {
+          res.send({
+            status  : 1,
+            info    : 'error',
+            message:'系统错误' 
+        });
+        }else{
+          res.json(result);
+        }
+        })
+}
+
+
+//回复
+exports.reply =  function(req, res, next) {
+
+    var adv_id = req.body.adv_id;
+    var reply = req.body.reply;
+
+
+      con.query('update advice set reply = ? where adv_id = ?',[reply,adv_id], function(err,result) {
+    if (err) {
+      res.send({
+        status  : 1,
+        info    : 'error',
+        message:'系统错误' 
+    });
+    }
+    
+    })
+  }
+
+
+//   /删除建议
+  exports.advicedel = function(req, res, next) {
+      
+  
+      var adv_id = req.query.adv_id;
+      console.log(adv_id);
+        con.query('delete FROM advice where adv_id = ?',[adv_id], function(err,result) {
+      if (err) {
+        res.send({
+          status  : 1,
+          info    : 'error',
+          message:'系统错误' 
+      });
+      }
+      })
+    }
+  
+//头条查询接口
+exports.toutiaosel =  function(req, res, next) {
+
+    con.query('SELECT * FROM toutiao', function(err,result) {
+    if (err) {
+      res.send({
+        status  : 1,
+        info    : 'error',
+        message:'系统错误' 
+    });
+    }else{
+      res.json(result);
+      console.log(result);
+    }
+    })
+  }
+  
+  //头条增加接口
+  exports.toutiaoadd =  function(req, res, next) {
+  
+  
+    var toutiao_id = req.body.toutiao_id;
+    var toutiao_title = req.body.toutiao_title;
+    var toutiao_content = req.body.toutiao_content;
+    
+  
+  
+      con.query('insert into toutiao(tou_content) values(?)',[toutiao_content], function(err,result) {
+    if (err) {
+      res.send({
+        status  : 1,
+        info    : 'error',
+        message:'系统错误' 
+    });
+    console.log(err);
+    }
+    })
+  }
+  
+  //头条删除接口
+  exports.toutiaodel = function(req, res, next) {
+      
+  
+    var tou_id = req.query.tou_id;
+    console.log(tou_id);
+      con.query('delete FROM toutiao where tou_id = ?',[tou_id], function(err,result) {
+    if (err) {
+      res.send({
+        status  : 1,
+        info    : 'error',
+        message:'系统错误' 
+    });
+    }
+    })
+  }
+
+
+  //查询接口
+exports.lunbo_sel =  function(req, res, next) {
+  
+    con.query('SELECT * FROM lunbo', function(err,result) {
+      if (err) {
+        res.send({
+          status  : 1,
+          info    : 'error',
+          message:'系统错误' 
+      });
+      }else{
+        res.json(result);
+       
+      }
+      })
+    }
+  
+  //轮播删除接口
+exports.lun_del = function(req, res, next) {
+
+    var lun_id = req.query.lun_id;
+    con.query('delete FROM lunbo where lun_id = ?',[lun_id], function(err,result) {
+      if (err) {
+        res.send({
+          status  : 1,
+          info    : 'error',
+          message:'系统错误' 
+      });
+      }else{
+        res.json(result);
+      }
+      })
+    };
+
+
+
+    
+//轮播图增加接口
+exports.lunbo_add = function(req, res, next) {
+
+    var lun_id = req.body.lun_id;
+    var lun_name = req.body.lun_name;
+    var lun_src = req.body.lun_src;
+
+      con.query('insert into lunbo(lun_id,lun_name,lun_src) values(?,?,?)',[lun_id,lun_name,lun_src], function(err,result) {
+    if (err) {
+      res.send({
+        status  : 1,
+        info    : 'error',
+        message:'系统错误' 
+    });
+    }
+    else{
+      res.json(result);
+    }
+    })
+  };

@@ -103,7 +103,7 @@ app.get('/getOwnNotes', community.getOwnNotes);
 
 app.post('/advise',forget.postadvise);
 app.get('/advise',forget.getadvise);
-
+app.get('/fileSearch',learn.fileSearch);
 // backAPI------------------------------------------------
 
 app.get('/getStu', common.getStu);
@@ -117,10 +117,19 @@ app.get('/delLearnFile', learn2.delLearnFile);
 app.get('/delposter', learn2.delposter);
 app.get('/delNews', learn2.delNews);
 
+app.get('/advicesel',common.advicesel);//查询建议，
+app.post('/reply',common.reply);//回复建议
 
 
+app.get('/toutiao',common.toutiaosel);
+app.post('/toutiaoadd',common.toutiaoadd);
+app.get('/toutiaodel',common.toutiaodel) 
 
+// 轮播图管理
+app.get('/lun',common.lunbo_sel);
+app.get('/lundel',common.lun_del);
 
+app.get('/lunbo_sel',common.lunbo_sel);
 // -------------------------------------------
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
