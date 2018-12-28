@@ -118,7 +118,8 @@ app.get('/delposter', learn2.delposter);
 app.get('/delNews', learn2.delNews);
 
 app.get('/advicesel',common.advicesel);//查询建议，
-app.post('/reply',common.reply);//回复建议
+app.post('/writeAdvice',common.writeAdvice);//使用者写建议 
+app.post('/reply',common.reply);//回复建议 
 
 
 app.get('/toutiao',common.toutiaosel);

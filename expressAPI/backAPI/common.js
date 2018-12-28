@@ -64,18 +64,61 @@ exports.showOrders = function(req,res){
 
 //建议查询
 exports.advicesel = function(req,res){
-    con.query('SELECT * FROM advice', function(err,result) {
-        if (err) {
-          res.send({
-            status  : 1,
-            info    : 'error',
-            message:'系统错误' 
-        });
-        }else{
-          res.json(result);
-        }
-        })
+
+    var adv_user = req.query.adv_user;
+    if(!adv_user){
+        con.query('SELECT * FROM advice', function(err,result) {
+            if (err) {
+              res.send({
+                status  : 1, 
+                info    : 'error',
+                message:'系统错误' 
+            });
+            }else{
+              res.json(result);
+            }
+            })
+    }else{
+        con.query('SELECT * FROM advice where adv_user = ?',[adv_user], function(err,result) {
+            if (err) {
+              res.send({
+                status  : 1, 
+                info    : 'error',
+                message:'系统错误' 
+            });
+            }else{
+              res.json(result);
+            }
+            })
+    }
+   
 }
+
+// 写建议
+
+exports.writeAdvice =  function(req, res, next) {
+
+    var adv_user = req.body.adv_user;
+    var adv_content = req.body.adv_content;
+    var adv_time = req.body.adv_time;
+
+      con.query('insert into advice(adv_user,adv_content,adv_time) values(?,?,?)',[adv_user,adv_content,adv_time], function(err,result) {
+    if (err) {
+      res.send({
+        status  : 1,
+        info    : 'error',
+        message:'系统错误' 
+    });
+    }else{
+        res.send({
+            status  : 0,
+            info    : 'ok',
+            message:'建议成功' 
+        });
+    }
+    
+    })
+  }
 
 
 //回复
