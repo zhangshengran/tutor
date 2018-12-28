@@ -742,4 +742,39 @@
                     message:'数据库错误'
             }    
             ); 
+
+
+<h4>得到头条内容</h4>
+        <span>接口：/toutiao</span><br/>
+        <span>请求：get</span><br/>
+      
+
+         成功返回值：
+              
+              array[object];
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            ); 
+
+
+<h4>得到轮播图</h4>
+        <span>接口：/lun</span><br/>
+        <span>请求：get</span><br/>
+      
+
+         成功返回值：
+              
+              array[object];
+            }
+        错误返回值:{
+                    status:1,
+                    info:'error',
+                    message:'数据库错误'
+            }    
+            ); 
+            
 </body>

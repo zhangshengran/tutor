@@ -122,14 +122,13 @@ app.post('/writeAdvice',common.writeAdvice);//使用者写建议
 app.post('/reply',common.reply);//回复建议 
 
 
-app.get('/toutiao',common.toutiaosel);
-app.post('/toutiaoadd',common.toutiaoadd);
-app.get('/toutiaodel',common.toutiaodel) 
+app.get('/toutiao',common.toutiaosel);//得到头条内容
+app.post('/toutiaoadd',common.toutiaoadd);//管理者增加头条
+app.get('/toutiaodel',common.toutiaodel) //删除头条
 
 // 轮播图管理
-app.get('/lun',common.lunbo_sel);
+app.get('/lun',common.lunbo_sel);//前端得到轮播图
 app.get('/lundel',common.lun_del);
-
 app.get('/lunbo_sel',common.lunbo_sel);
 // -------------------------------------------
 // catch 404 and forward to error handler
