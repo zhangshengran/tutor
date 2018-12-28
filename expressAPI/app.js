@@ -130,6 +130,10 @@ app.get('/toutiaodel',common.toutiaodel) //删除头条
 app.get('/lun',common.lunbo_sel);//前端得到轮播图
 app.get('/lundel',common.lun_del);
 app.get('/lunbo_sel',common.lunbo_sel);
+
+app.get('/fileNum',common.fileNum);
+app.get('/orderNum',common.orderNum);
+
 // -------------------------------------------
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
