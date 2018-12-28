@@ -133,6 +133,8 @@ app.get('/lunbo_sel',common.lunbo_sel);
 
 app.get('/fileNum',common.fileNum);
 app.get('/orderNum',common.orderNum);
+app.get('/studentsNum',common.studentsNum);
+app.get('/videoNum',common.videoNum);
 
 // -------------------------------------------
 // catch 404 and forward to error handler

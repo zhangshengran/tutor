@@ -315,3 +315,41 @@ exports.orderNum = function (req, res, next) {
         }
     })
 }
+
+
+
+exports.studentsNum = function (req, res, next) {
+
+    con.query('SELECT * FROM students', function (err, result) {
+        if (err) {
+            res.send({
+                status: 1,
+                info: 'error',
+                message: '系统错误'
+            });
+        } else {
+            var leng = result.length;
+            res.json(leng);
+
+        }
+    })
+}
+
+
+
+exports.videoNum = function (req, res, next) {
+
+    con.query('SELECT * FROM video', function (err, result) {
+        if (err) {
+            res.send({
+                status: 1,
+                info: 'error',
+                message: '系统错误'
+            });
+        } else {
+            var leng = result.length;
+            res.json(leng);
+
+        }
+    })
+}
