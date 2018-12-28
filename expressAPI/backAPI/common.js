@@ -135,6 +135,12 @@ exports.reply =  function(req, res, next) {
         info    : 'error',
         message:'系统错误' 
     });
+    }else{
+        res.send({
+            status  : 0,
+            info    : 'ok',
+           
+        })
     }
     
     })
