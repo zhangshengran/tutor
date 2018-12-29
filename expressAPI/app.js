@@ -123,7 +123,7 @@ app.post('/reply',common.reply);//回复建议
 
 
 app.get('/toutiao',common.toutiaosel);//得到头条内容
-app.post('/toutiaoadd',common.toutiaoadd);//管理者增加头条
+app.get('/toutiaoadd',common.toutiaoadd);//管理者增加头条
 app.get('/toutiaodel',common.toutiaodel) //删除头条
 
 // 轮播图管理
@@ -135,6 +135,7 @@ app.get('/fileNum',common.fileNum);
 app.get('/orderNum',common.orderNum);
 app.get('/studentsNum',common.studentsNum);
 app.get('/videoNum',common.videoNum);
+app.post('/uplunbo', upload.any(), common.uplunbo);
 
 // -------------------------------------------
 // catch 404 and forward to error handler

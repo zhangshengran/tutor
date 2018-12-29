@@ -2,6 +2,31 @@ var aliyun = require('../config/config');
 var con = require('../config/config').con;
 
 
+
+var fs = require('fs');
+var multer = require('multer');
+var upload = multer({ dest: 'upload_tmp/' });
+
+
+let OSS = require('ali-oss');
+let client3 = new OSS({
+    region: 'oss-cn-beijing',
+    accessKeyId: 'LTAILzRjytI5AIO8',
+    accessKeySecret: 'VtwJkolPmWi0k3RvxKqtG5v1wMSBWm',
+    bucket: 'tutor666',
+});
+aliyunPUT_learn = async function put(path, filename, temfile, callback) {
+    try {
+        let result = await client3.put(path + filename, temfile);
+        var url = result.url;//文件读取地址
+        callback(url);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+
 exports.getStu = function (req, res) {
     con.query('select * from students', (err, result) => {
         if (err) {
@@ -184,10 +209,7 @@ exports.toutiaosel = function (req, res, next) {
 //头条增加接口
 exports.toutiaoadd = function (req, res, next) {
 
-
-    var toutiao_id = req.body.toutiao_id;
-    var toutiao_title = req.body.toutiao_title;
-    var toutiao_content = req.body.toutiao_content;
+    var toutiao_content = req.query.toutiao_content;
 
 
 
@@ -352,4 +374,52 @@ exports.videoNum = function (req, res, next) {
 
         }
     })
+}
+
+
+
+
+
+exports.uplunbo =  function (req, res) {
+
+
+    // 上传的文件信息
+    console.log(req.body);
+    console.log(req.files);
+
+    // res.send('OK1');
+    var time = new Date().getTime();
+    var type = req.files[0].originalname.split('.')[1];
+    var name =  time + '.' + type;
+    var des_file = "./upload_tmp/" + name;
+
+    function up(lun_src) {
+        var sql = 'insert into lunbo(lun_src) values(?)';
+        con.query(sql, [lun_src], (err, result) => {
+            if (err) {
+                res.send(
+                    {
+                        status: 1,
+                        message: '数据库错误'
+                    }
+                )
+            } else {
+                res.send({
+                    status: 0,
+                    message: 'OK'
+                });
+            }
+        })
+    }
+
+    fs.rename(req.files[0].path, des_file, function (error) {
+        if (error) {
+            console.log(error);
+        } else {
+            aliyunPUT_learn('', name, des_file, up);
+
+        }
+    })
+
+
 }
