@@ -40,10 +40,10 @@ exports.aliyunPUT_head = async function put(path, filename, temfile) {
 
 
 let client2 = new OSS({
-  region: 'oss-cn-beijing',
-  accessKeyId: 'LTAILzRjytI5AIO8',
-  accessKeySecret: 'VtwJkolPmWi0k3RvxKqtG5v1wMSBWm',
-  bucket: 'tutor-community',
+  region: '',
+  accessKeyId: '',
+  accessKeySecret: '',
+  bucket: '',
 });
 
 
