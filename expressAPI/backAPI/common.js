@@ -10,10 +10,10 @@ var upload = multer({ dest: 'upload_tmp/' });
 
 let OSS = require('ali-oss');
 let client3 = new OSS({
-    region: 'oss-cn-beijing',
-    accessKeyId: 'LTAILzRjytI5AIO8',
-    accessKeySecret: 'VtwJkolPmWi0k3RvxKqtG5v1wMSBWm',
-    bucket: 'tutor666',
+    region: '',
+    accessKeyId: '',
+    accessKeySecret: '',
+    bucket: '',
 });
 aliyunPUT_learn = async function put(path, filename, temfile, callback) {
     try {
