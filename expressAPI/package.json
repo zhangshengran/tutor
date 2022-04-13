@@ -8,7 +8,7 @@
   "dependencies": {
     "@alicloud/sms-sdk": "^1.1.6",
     "ali-oss": "^6.0.2",
-    "async": "^2.6.1",
+    "async": "^3.2.2",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.9",
